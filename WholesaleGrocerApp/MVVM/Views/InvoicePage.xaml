@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WholesaleGrocerApp.MVVM.Views.InvoicePage"
+             xmlns:vm="clr-namespace:WholesaleGrocerApp.MVVM.ViewModels"
+             Title="InvoicePage">
+ 
+
+    <StackLayout Padding="20">
+        <Label Text="Invoice" FontSize="24" HorizontalOptions="Center" />
+        <Label Text="Client:" FontAttributes="Bold" />
+        <Label Text="{Binding CurrentInvoice.ClientName}" />
+
+        <CollectionView ItemsSource="{Binding CurrentInvoice.Products}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+                        <Label Text="{Binding Name}" />
+                        <Label Text="{Binding Price}" />
+                        <Label Text="{Binding Quantity}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="Generate PDF Invoice" Command="{Binding GeneratePdfCommand}" />
+        <VerticalStackLayout Padding="20">
+            <Label Text="Invoice Page" FontSize="24" HorizontalOptions="Center" />
+
+            <Button Text="Go to Products" Command="{Binding GoToProductsCommand}" />
+            <Button Text="Go to Users" Command="{Binding GoToUsersCommand}" />
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentPage>

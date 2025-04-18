@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WholesaleGrocerApp.MVVM.Views.UserPage"
+             xmlns:vm="clr-namespace:WholesaleGrocerApp.MVVM.ViewModels"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             Title="UserPage"
+             BindingContext="{StaticResource UserViewModel}">
+
+    <ContentPage.Content>
+        <sf:SfListView x:Name="userListView"
+                       ItemsSource="{Binding Users}"
+                       ItemTapped="OnUserTapped">
+            <sf:SfListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout BackgroundColor="LightGray" Padding="10">
+                        <Label Text="Select a Sailor"
+                               FontSize="20"
+                               TextColor="Black"/>
+                    </StackLayout>
+                </DataTemplate>
+            </sf:SfListView.HeaderTemplate>
+
+            <sf:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Name}"
+                                   FontSize="18"
+                                   VerticalOptions="Center" />
+                            <Button Text="Manage"
+                                    HorizontalOptions="Center"
+                                    Command="{Binding BindingContext.ManageUserCommand, Source={x:Reference userListView}}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </sf:SfListView.ItemTemplate>
+        </sf:SfListView>
+    </ContentPage.Content>
+</ContentPage>
